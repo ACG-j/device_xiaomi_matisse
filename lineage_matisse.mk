@@ -33,8 +33,8 @@ TARGET_SCREEN_DENSITY := 560
 TARGET_SUPPORTS_QUICK_TAP := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
-# TODO: 没搞清楚版本号
+# 没搞清楚版本号
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="matisse-user 13 SP2A.220405.004 eng.twrp.20230108.235029 test-keys"
+    PRIVATE_BUILD_DESC="missi-user TP1A.220624.014 V14.0.6.0.TLKCNXM release-keys"
 
-BUILD_FINGERPRINT := Redmi/matisse/matisse:13/SP2A.220405.004/twrp01082349:eng/test-keys
+BUILD_FINGERPRINT := Redmi/matisse/matisse:13/TP1A.220624.014/V14.0.6.0.TLKCNXM:user/release-keys

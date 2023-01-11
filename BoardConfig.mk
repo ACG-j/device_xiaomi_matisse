@@ -5,34 +5,30 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+BOARD_VENDOR := xiaomi
 DEVICE_PATH := device/xiaomi/matisse
 
-# For building with minimal manifest
-ALLOW_MISSING_DEPENDENCIES := true
+# Build Hack
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
-    system \
-    system \
-    vendor \
-    vendor \
-    product \
-    product \
-    system_ext \
-    system_ext \
-    odm \
-    odm \
-    vendor_dlkm \
-    odm_dlkm \
     boot \
-    vbmeta_vendor \
-    vbmeta_system
-BOARD_USES_RECOVERY_AS_BOOT := true
+    dtbo \
+    system \
+    product \
+    vendor \
+    odm \
+    vbmeta \
+    vendor_boot \
+    vbmeta_system \
+    vbmeta_vendor
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv8-2a-dotprod
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 := 
 TARGET_CPU_VARIANT := generic
@@ -45,12 +41,20 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
+TARGET_BOARD_SUFFIX := 64
+TARGET_USES_64_BIT_BINDER := true
+
 # APEX
 OVERRIDE_TARGET_FLATTEN_APEX := true
+
+# Audio
+BOARD_SUPPORTS_SOUND_TRIGGER := true
+BOARD_USES_ALSA_AUDIO := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := matisse
 TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
 
 # Display
 TARGET_SCREEN_DENSITY := 560

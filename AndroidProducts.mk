@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_matisse.mk
+    $(LOCAL_DIR)/lineage_matisse.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_matisse-user \
-    omni_matisse-userdebug \
-    omni_matisse-eng
+    lineage_matisse-user \
+    lineage_matisse-userdebug \
+    lineage_matisse-eng
