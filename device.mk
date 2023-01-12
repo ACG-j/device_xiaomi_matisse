@@ -82,7 +82,7 @@ PRODUCT_PACKAGES += \
 
 # DT2W
 PRODUCT_PACKAGES += \
-    DT2W-Service-MT6895
+    DT2W-Service-mt6983
 
 # Fastbootd
 PRODUCT_PACKAGES += \
