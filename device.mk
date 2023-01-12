@@ -20,7 +20,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Virtual A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
 
-PRODUCT_TARGET_VNDK_VERSION := 33
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 PRODUCT_PACKAGES += \
     update_engine \
@@ -196,7 +196,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.mt6983:recovery/root/first_stage_ramdisk/fstab.mt6983
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -207,7 +207,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sysconfig/miuicamera-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/miuicamera-hiddenapi-package-whitelist.xml
 
 # VNDK
-PRODUCT_EXTRA_VNDK_VERSIONS := 33
+PRODUCT_EXTRA_VNDK_VERSIONS := 31
 
 # Xiaomi Parts
 PRODUCT_PACKAGES += \
