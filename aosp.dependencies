@@ -1,0 +1,20 @@
+[
+ {
+   "repository"  : "device_mediatek_sepolicy_vndr",
+   "target_path" : "device/mediatek/sepolicy_vndr",
+   "remote"      : "pixel",
+   "branch"      : "twelve-plus"
+ },
+ {
+   "repository"  : "ACG-j/device_xiaomi_mt6983-common",
+   "target_path" : "device/xiaomi/mt6983-common",
+   "remote"      : "github",
+   "branch"      : "twelve-plus"
+ },
+ {
+   "repository"  : "begonia-dev/android_packages_apps_MtkFMRadio",
+   "target_path" : "packages/apps/MtkFMRadio",
+   "remote"      : "github",
+   "branch"      : "12.1"
+ },
+]

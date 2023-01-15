@@ -16,9 +16,9 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 $(call inherit-product, device/xiaomi/matisse/device.mk)
 
 PRODUCT_DEVICE := matisse
-PRODUCT_NAME := omni_matisse
+PRODUCT_NAME := lineage_matisse
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := 22011211C
+PRODUCT_MODEL := Redmi K50 Pro
 PRODUCT_MANUFACTURER := xiaomi
 
 PRODUCT_CHARACTERISTICS := nosdcard
