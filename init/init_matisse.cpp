@@ -28,6 +28,10 @@
  */
 
 #include <stdlib.h>
+#include <fstream>
+#include <string.h>
+#include <sys/sysinfo.h>
+#include <unistd.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
@@ -35,7 +39,16 @@
 #include "property_service.h"
 #include "vendor_init.h"
 
+using android::base::GetProperty;
+using android::base::SetProperty;
 using std::string;
+
+char const *heapstartsize;
+char const *heapgrowthlimit;
+char const *heapsize;
+char const *heapminfree;
+char const *heapmaxfree;
+char const *heaptargetutilization;
 
 void property_override(string prop, string value)
 {
@@ -79,10 +92,10 @@ void vendor_load_properties()
   for (const string &prop : prop_partitions)
   {
     property_override(string("ro.product.") + prop + string("brand"), "Redmi");
-    property_override(string("ro.product.") + prop + string("name"), "rubens");
-    property_override(string("ro.product.") + prop + string("device"), "rubens");
-    property_override(string("ro.product.") + prop + string("model"), "22041211AC");
-    property_override(string("ro.product.") + prop + string("marketname"), "Redmi K50");
+    property_override(string("ro.product.") + prop + string("name"), "matisse");
+    property_override(string("ro.product.") + prop + string("device"), "matisse");
+    property_override(string("ro.product.") + prop + string("model"), "22011211C");
+    property_override(string("ro.product.") + prop + string("marketname"), "Redmi K50 Pro");
   }
 
   property_override("ro.oem_unlock_supported", "0");
