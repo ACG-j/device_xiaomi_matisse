@@ -9,7 +9,7 @@
    "repository"  : "ACG-j/device_xiaomi_mt6983-common",
    "target_path" : "device/xiaomi/mt6983-common",
    "remote"      : "github",
-   "branch"      : "twelve-plus"
+   "branch"      : "13.0"
  },
  {
    "repository"  : "begonia-dev/android_packages_apps_MtkFMRadio",
