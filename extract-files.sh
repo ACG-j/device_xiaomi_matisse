@@ -12,7 +12,8 @@ fi
 set -e
 
 export DEVICE=matisse
-export VENDOR=xiaomi
 export DEVICE_COMMOM=mt6983-common
+export VENDOR=xiaomi
 
-"./../mt6983-common/extract-files.sh" "$@"
+
+"./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"
