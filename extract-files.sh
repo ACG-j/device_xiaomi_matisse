@@ -12,7 +12,7 @@ fi
 set -e
 
 export DEVICE=matisse
-export DEVICE_COMMOM=mt6983-common
+export DEVICE_COMMON=mt6983-common
 export VENDOR=xiaomi
 
 
