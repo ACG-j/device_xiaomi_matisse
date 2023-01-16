@@ -35,7 +35,7 @@ TARGET_SUPPORTS_QUICK_TAP := true
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 # System Keys
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="missi-user TP1A.220624.014 V14.0.6.0.TLKCNXM release-keys"
+# PRODUCT_BUILD_PROP_OVERRIDES += \
+#     PRIVATE_BUILD_DESC="missi-user TP1A.220624.014 V14.0.6.0.TLKCNXM release-keys"
 
-BUILD_FINGERPRINT := Redmi/matisse/matisse:13/TP1A.220624.014/V14.0.6.0.TLKCNXM:user/release-keys
+# BUILD_FINGERPRINT := Redmi/matisse/matisse:13/TP1A.220624.014/V14.0.6.0.TLKCNXM:user/release-keys
