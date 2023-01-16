@@ -29,7 +29,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    FrameworkResOverlay \
     MatisseFrameworkResOverlay \
     SystemUIOverlay
 # Recovery
