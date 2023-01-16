@@ -925,8 +925,6 @@ vendor/lib64/android.hardware.health@2.0.so
 vendor/lib64/android.hardware.health@2.1.so
 vendor/lib64/hw/android.hardware.health@2.0-impl-2.1.so
 
-# IFAA
--vendor/app/IFAAService/IFAAService.apk
 
 # Keymaster
 vendor/bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
