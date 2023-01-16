@@ -13,6 +13,6 @@ set -e
 
 export DEVICE=matisse
 export VENDOR=xiaomi
-export DEVICE_COMMOM=mt6895-common
+export DEVICE_COMMOM=mt6983-common
 
 "./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"
