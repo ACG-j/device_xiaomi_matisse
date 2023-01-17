@@ -3,7 +3,7 @@
    "repository"  : "device_mediatek_sepolicy_vndr",
    "target_path" : "device/mediatek/sepolicy_vndr",
    "remote"      : "pixel",
-   "branch"      : "twelve-plus"
+   "branch"      : "twelve"
  },
  {
    "repository"  : "ACG-j/device_xiaomi_mt6983-common",
@@ -17,4 +17,10 @@
    "remote"      : "github",
    "branch"      : "12.1"
  },
+ {
+   "repository"  : "PixelExperience/vendor_mediatek_ims",
+   "target_path" : "vendor/mediatek_ims",
+   "remote"      : "github",
+   "branch"      : "twelve"
+ }
 ]
