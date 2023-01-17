@@ -17,10 +17,4 @@
    "remote"      : "github",
    "branch"      : "12.1"
  },
- {
-   "repository"  : "PixelExperience/vendor_mediatek_ims",
-   "target_path" : "vendor/mediatek/mediatek_ims",
-   "remote"      : "pixel",
-   "branch"      : "twelve"
- }
 ]
