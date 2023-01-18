@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_matisse.mk
+    $(LOCAL_DIR)/aosp_matisse.mk
 
 COMMON_LUNCH_CHOICES := \
     aosp_matisse-user \
