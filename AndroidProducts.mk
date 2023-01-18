@@ -9,6 +9,6 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_matisse.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_matisse-user \
-    lineage_matisse-userdebug \
-    lineage_matisse-eng
+    aosp_matisse-user \
+    aosp_matisse-userdebug \
+    aosp_matisse-eng
