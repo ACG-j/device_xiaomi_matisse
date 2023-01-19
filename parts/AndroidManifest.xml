@@ -96,7 +96,7 @@
                 android:resource="@string/dc_dimming_enable_summary" />
         </activity>
 
-        <activity
+        <!-- <activity
             android:name=".speaker.ClearSpeakerActivity" 
             android:label="@string/clear_speaker_title"
             android:exported="true"
@@ -107,7 +107,7 @@
             <meta-data
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.sound" />
-        </activity>
+        </activity> -->
         
         <activity
             android:name=".refreshrate.RefreshActivity"
