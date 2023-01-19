@@ -30,7 +30,7 @@
  import androidx.preference.Preference;
  import androidx.preference.PreferenceFragment;
  import androidx.preference.SwitchPreference;
- 
+ import com.android.settingslib.widget.R;
  import org.lineageos.settings.R;
  
  import java.io.IOException;
@@ -88,7 +88,7 @@
          mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
          mMediaPlayer.setLooping(true);
          try {
-             AssetFileDescriptor file = getResources().openRawResourceFd(T.raw.clear_speaker_sound);
+             AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.clear_speaker_sound);
              try {
                  mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
              } finally {
