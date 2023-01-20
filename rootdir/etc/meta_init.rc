@@ -15,6 +15,8 @@ import /vendor/etc/init/android.hardware.boot@1.2-service.rc
 import /vendor/etc/init/android.hardware.boot@1.2-service-lazy.rc
 import /vendor/etc/init/android.hardware.health@2.1-service.rc
 
+import /vendor/etc/init/android.hardware.security.keymint-service.beanpod.rc
+
 #copy from system/etc for APEX
 import /system/etc/init/apexd.rc
 import /system/etc/init/art_apex_boot_integrity.rc
@@ -106,8 +108,7 @@ on init
     symlink /dev/block/by-name/proinfo /dev/pro_info
     symlink /dev/block/by-name/nvram /dev/nvram
     symlink /dev/block/by-name/para /dev/misc
-    symlink /dev/block/by-name/logo_a /dev/logo_a
-    symlink /dev/block/by-name/logo_b /dev/logo_b
+    symlink /dev/block/by-name/logo /dev/logo
 
     # Mount cgroup mount point for cpu accounting
     mount cgroup none /acct cpuacct
@@ -674,26 +675,26 @@ on property:sys.usb.ffs.ready=1 && property:ro.boot.usbconfig=0 && property:sys.
 #META, move this to kernel driver
 on property:ro.boot.usbconfig=1 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:on property:ro.boot.usbconfig 1"
-    write /config/usb_gadget/g1/UDC "none"
-    write /config/usb_gadget/g1/strings/0x409/serialnumber ""
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "acm"
-    write /config/usb_gadget/g1/idProduct 0x2007
-    write /config/usb_gadget/g1/bDeviceClass 02
-    symlink /config/usb_gadget/g1/functions/acm.gs0 /config/usb_gadget/g1/configs/b.1/f1
-    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    #write /config/usb_gadget/g1/UDC "none"
+    #write /config/usb_gadget/g1/strings/0x409/serialnumber ""
+    #write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "acm"
+    #write /config/usb_gadget/g1/idProduct 0x2007
+    #write /config/usb_gadget/g1/bDeviceClass 02
+    #symlink /config/usb_gadget/g1/functions/acm.gs0 /config/usb_gadget/g1/configs/b.1/f1
+    #write /config/usb_gadget/g1/UDC ${sys.usb.controller}
 
 #META+ELT, move this to kernel driver
 on property:ro.boot.usbconfig=2 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:on property:ro.boot.usbconfig 2"
     setprop vendor.usb.acm_idx 1,4
-    write /config/usb_gadget/g1/UDC "none"
-    write /config/usb_gadget/g1/strings/0x409/serialnumber $ro.serialno
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "meta_elt"
-    write /config/usb_gadget/g1/idProduct 0x202d
-    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
-    symlink /config/usb_gadget/g1/functions/acm.gs0 /config/usb_gadget/g1/configs/b.1/f2
-    symlink /config/usb_gadget/g1/functions/acm.gs3 /config/usb_gadget/g1/configs/b.1/f3
-    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    #write /config/usb_gadget/g1/UDC "none"
+    #write /config/usb_gadget/g1/strings/0x409/serialnumber $ro.serialno
+    #write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "meta_elt"
+    #write /config/usb_gadget/g1/idProduct 0x202d
+    #symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    #symlink /config/usb_gadget/g1/functions/acm.gs0 /config/usb_gadget/g1/configs/b.1/f2
+    #symlink /config/usb_gadget/g1/functions/acm.gs3 /config/usb_gadget/g1/configs/b.1/f3
+    #write /config/usb_gadget/g1/UDC ${sys.usb.controller}
 
 #META+ELT+ADB
 on property:ro.boot.usbconfig=3 && property:sys.usb.configfs=1
