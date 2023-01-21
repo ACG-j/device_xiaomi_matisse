@@ -47,4 +47,4 @@ PRODUCT_PACKAGES += \
 
 # Xiaomi Parts
 PRODUCT_PACKAGES += \
-    XiaomiParts \
+    XiaomiParts
