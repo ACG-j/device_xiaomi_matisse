@@ -35,7 +35,7 @@ PRODUCT_PACKAGES += \
     SettingsOverlay
 # Recovery
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/modules/modules.load.recovery:recovery/root/lib/modules/modules.load.recovery
+    $(LOCAL_PATH)/prebuilts/modules/ramdisk/modules.load.recovery:recovery/root/lib/modules/modules.load.recovery
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/prebuilts/firmware/,recovery/root/vendor/firmware)
