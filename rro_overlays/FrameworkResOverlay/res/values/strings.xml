@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="allow">Allow</string>
-    <string name="config_screenshotServiceComponent">com.miui.screenshot/com.miui.screenshot.TakeScreenshotService</string>
-    <string name="deny">Deny</string>
-</resources>

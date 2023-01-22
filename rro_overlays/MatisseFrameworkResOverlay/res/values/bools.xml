@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <bool name="config_adaptive_sleep_available">false</bool>
-    <bool name="config_displayBlanksAfterDoze">false</bool>
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
-    <bool name="config_showNavigationBar">true</bool>
-    <bool name="config_supportsMicToggle">false</bool>
-</resources>
