@@ -15,10 +15,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/powershare_enable_title">
+
     <SwitchPreference
+        android:key="powershare_enable"
         android:defaultValue="false"
-        android:key="dc_dimming_enable"
-        android:title="@string/dc_dimming_enable_title"
-        android:summary="@string/dc_dimming_enable_summary" />
+        android:title="@string/powershare_enable_title"
+        android:summary="@string/powershare_enable_summary" />
 </PreferenceScreen>
