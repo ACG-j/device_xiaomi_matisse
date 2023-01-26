@@ -22,31 +22,34 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
-import android.os.SystemProperties;
 
 import org.lineageos.settings.R;
+import org.lineageos.settings.utils.FileUtils;
 
 public class DcDimmingSettingsFragment extends PreferenceFragment implements
         OnPreferenceChangeListener {
 
+    private SwitchPreference mDcDimmingPreference;
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
-
-    private SwitchPreference mDCDimmingPreference;
+    private static final String DC_DIMMING_NODE = "sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-      addPreferencesFromResource(R.xml.dc_dimming_settings);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDCDimmingPreference = (SwitchPreference) findPreference(DC_DIMMING_ENABLE_KEY);
-        mDCDimmingPreference.setEnabled(true);
-        mDCDimmingPreference.setOnPreferenceChangeListener(this);
+        addPreferencesFromResource(R.xml.dcdimming_settings);
+        mDcDimmingPreference = (SwitchPreference) findPreference(DC_DIMMING_ENABLE_KEY);
+        if (FileUtils.fileExists(DC_DIMMING_NODE)) {
+            mDcDimmingPreference.setEnabled(true);
+            mDcDimmingPreference.setOnPreferenceChangeListener(this);
+        } else {
+            mDcDimmingPreference.setSummary(R.string.dc_dimming_enable_summary_not_supported);
+            mDcDimmingPreference.setEnabled(false);
+        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (DC_DIMMING_ENABLE_KEY.equals(preference.getKey())) {
-            SystemProperties.set("persist.sys.parts.dc.enable", (Boolean) newValue ? "1" : "0");
+            FileUtils.writeLine(DC_DIMMING_NODE, (Boolean) newValue ? "08 01":"08 00");
         }
         return true;
     }
