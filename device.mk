@@ -12,6 +12,7 @@ $(call inherit-product, vendor/xiaomi/matisse/matisse-vendor.mk)
 
 # API
 PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 # FM Radio
 PRODUCT_PACKAGES += \
