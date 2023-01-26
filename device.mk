@@ -10,6 +10,9 @@ $(call inherit-product, device/xiaomi/mt6983-common/mt6983-common.mk)
 # Inherit from proprietary files
 $(call inherit-product, vendor/xiaomi/matisse/matisse-vendor.mk)
 
+# API
+PRODUCT_SHIPPING_API_LEVEL := 31
+
 # FM Radio
 PRODUCT_PACKAGES += \
     MtkFMRadio
