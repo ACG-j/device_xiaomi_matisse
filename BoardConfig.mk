@@ -40,4 +40,4 @@ PRODUCT_COPY_FILES += \
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Partitions
-BOARD_PREBUILT_ODMIMAGE := $(DEVICE_PATH)/prebuilts/odm.img
+# BOARD_PREBUILT_ODMIMAGE := $(DEVICE_PATH)/prebuilts/odm.img
