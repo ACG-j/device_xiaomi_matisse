@@ -201,6 +201,9 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.3 \
     android.hardware.secure_element@1.2
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    MtkFMRadio
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
