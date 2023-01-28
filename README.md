@@ -1,10 +1,2 @@
-# Android device tree for Redmi 22011211C (matisse)
-
-```
-#
-# Copyright (C) 2023 The Android Open Source Project
-# Copyright (C) 2023 device tree generator
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-```
+# device_xiaomi_matisse_Prebuilt
+ 

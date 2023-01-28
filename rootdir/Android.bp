@@ -1,19 +1,10 @@
 //
-// Copyright (C) 2022 The LineageOS Project
+// Copyright (C) 2023 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
 
-prebuilt_etc {
-    name: "init.project.rc",
-    src: "etc/init.project.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "meta_init.rc",
-    src: "etc/meta_init.rc",
-    sub_dir: "init/hw",
-    vendor: true,
+sh_binary {
+    name: "set_permissive.sh",
+    src: "bin/set_permissive.sh"
 }
