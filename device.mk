@@ -90,10 +90,9 @@ PRODUCT_PACKAGES += \
     set_permissive.sh \
     gpu-freq.sh \
     microtrust.rc \
-    ueventd.mt6983.rc 
+    ueventd.mt6983.rc \
+    gpu-freq
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/gpu-freq:$(TARGET_COPY_OUT_SYSTEM)/bin/gpu-freq
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

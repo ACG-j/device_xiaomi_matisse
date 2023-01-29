@@ -13,3 +13,8 @@ sh_binary {
     name: "gpu-freq.sh",
     src: "bin/gpu-freq.sh"
 }
+
+sh_binary {
+    name: "gpu-freq",
+    src: "bin/gpu-freq"
+}
