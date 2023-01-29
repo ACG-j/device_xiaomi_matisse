@@ -8,10 +8,3 @@ sh_binary {
     name: "set_permissive.sh",
     src: "bin/set_permissive.sh"
 }
-
-prebuilt_etc {
-    name: "set_permissive.rc",
-    src: "etc/set_permissive.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
