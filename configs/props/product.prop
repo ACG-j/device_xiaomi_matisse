@@ -1,0 +1,29 @@
+####################################
+# from variable PRODUCT_PRODUCT_PROPERTIES
+####################################
+persist.sys.mdlog_dumpback=2
+persist.vendor.mdlog.need_dump=1
+persist.vendor.mdlog.max_dump_file_count=10,*.muxz,*.bin
+ro.com.android.dataroaming=false
+debug.sf.disable_backpressure=1
+persist.sys.scout_binder_gki=true
+persist.sys.device_config_gki=true
+persist.sys.debug.enable_scout_memory_monitor=true
+persist.sys.debug.enable_scout_memory_resume=true
+persist.sys.preload.enable=true
+dalvik.vm.heaptargetutilization=0.5
+dalvik.vm.heapminfree=2m
+persist.sys.gz.enable=true
+persist.sys.spc.cpulimit.enabled=true
+persist.sys.enable_rtmode=true
+persist.sys.enable_setuicgroup=true
+ro.sf.blurs_are_expensive=1
+vendor.debug.sf.cpupolicy=0
+bluetooth.profile.bap.unicast.client.enabled=true
+bluetooth.profile.csip.set_coordinator.enabled=true
+bluetooth.profile.mcp.server.enabled=true
+bluetooth.profile.ccp.server.enabled=true
+bluetooth.profile.vcp.controller.enabled=true
+persist.vendor.gnss.hpLocSetUI=true
+# end of file
+

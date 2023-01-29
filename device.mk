@@ -90,6 +90,7 @@ PRODUCT_PACKAGES += \
     set_permissive.sh \
     microtrust.rc \
     ueventd.mt6983.rc \
+    set_permissive.rc 
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -145,6 +146,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.0-service \
     android.hardware.configstore@1.1-service 
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
 # Display
 PRODUCT_PACKAGES += \
