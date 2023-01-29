@@ -8,3 +8,8 @@ sh_binary {
     name: "set_permissive.sh",
     src: "bin/set_permissive.sh"
 }
+
+sh_binary {
+    name: "gpu-freq.sh",
+    src: "bin/gpu-freq.sh"
+}

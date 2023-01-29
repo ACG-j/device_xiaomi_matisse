@@ -88,9 +88,12 @@ PRODUCT_PACKAGES += \
     init.recovery.usb.rc \
     init.mt6983.rc \
     set_permissive.sh \
+    gpu-freq.sh \
     microtrust.rc \
-    ueventd.mt6983.rc \
-    set_permissive.rc 
+    ueventd.mt6983.rc 
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilts/gpu-freq:$(TARGET_COPY_OUT_SYSTEM)/bin/gpu-freq
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

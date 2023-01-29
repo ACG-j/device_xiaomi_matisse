@@ -1,6 +1,8 @@
 on early-init
     start set_permissive
-
+    # start gpu ondemand governor
+    exec /system/bin/ondemand_gpu.sh
+    start gpu-freq
 
 on property:dev.bootcomplete=1
     chmod 0666 /dev/xiaomi-touch
@@ -31,3 +33,8 @@ service lights-matisse /system/bin/hw/android.hardware.lights-service.matisse
     user system
     group system
     shutdown critical
+
+service gpu-freq /system/bin/gpu-freq
+    class main
+    user root
+	seclabel u:r:su:s0
