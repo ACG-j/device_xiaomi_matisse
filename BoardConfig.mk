@@ -76,6 +76,7 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := false
 TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb
 TARGET_KERNEL_SOURCE := kernel/xiaomi/matisse
 TARGET_KERNEL_CONFIG := mikrn_matisse_stability_defconfig
 
@@ -94,7 +95,6 @@ BOARD_PREBUILT_VENDORIMAGE := $(DEVICE_PATH)/prebuilts/vendor.img
 
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := main
-BOARD_MAIN_SIZE := 9648996352
 BOARD_MAIN_PARTITION_LIST := system system_ext product vendor vendor_dlkm odm odm_dlkm
 
 BOARD_PARTITION_LIST := $(call to-upper, $(BOARD_MAIN_PARTITION_LIST))
