@@ -76,6 +76,8 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := false
 TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
+TARGET_KERNEL_SOURCE := kernel/xiaomi/matisse
+TARGET_KERNEL_CONFIG := mikrn_matisse_stability_defconfig
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
