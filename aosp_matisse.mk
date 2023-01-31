@@ -36,7 +36,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Inherit device configurations
-$(call inherit-product, $(DEVICE_PATH)/device.mk)
+$(call inherit-product, device/xiaomi/matisse/device.mk)
 
 
 ## Device identifier. This must come after all inclusions.
@@ -46,7 +46,7 @@ PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := 22011211C
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RELEASE_NAME := Redmi K50 Pro
-DEVICE_PATH := device/xiaomi/matisse
+
 
 # GMS
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
