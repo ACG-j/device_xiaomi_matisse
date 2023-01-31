@@ -1,4 +1,0 @@
-runtime_resource_overlay {
-    name: "WifiResOverlayMatisse",
-    product_specific: true
-}

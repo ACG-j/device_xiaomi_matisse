@@ -1,28 +1,41 @@
 #
-# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
-# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 
 DEVICE_PATH := device/xiaomi/matisse
 
-BUILD_BROKEN_DUP_RULES := true
-
-
 # A/B
 AB_OTA_UPDATER := true
 
-AB_OTA_PARTITIONS += \
+AB_OTA_PARTITIONS := \
     boot \
     dtbo \
-    odm \
-    product \
     system \
     system_ext \
+    product \
+    vendor \
+    odm \
     vbmeta \
     vbmeta_system \
-    vendor \
-    vendor_boot
+    vbmeta_vendor
+
+# Build Hack
+BUILD_BROKEN_DUP_RULES := true
+
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -37,29 +50,43 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a55
 
+
+TARGET_USES_64_BIT_BINDER := true
+
+TARGET_SUPPORTS_64_BIT_APPS := true
+
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
+
+# Assertation
+TARGET_OTA_ASSERT_DEVICE := matisse
+
 # Bootloader
-# PRODUCT_PLATFORM := kalama
 TARGET_BOOTLOADER_BOARD_NAME := matisse
 TARGET_NO_BOOTLOADER := true
-TARGET_USES_UEFI := true
 
-# Display
-TARGET_SCREEN_DENSITY := 560
+# Platform
+TARGET_BOARD_PLATFORM := mt6983
 
 # Kernel
-BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_PAGE_SIZE := 4096
+
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
+
+BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_BASE := 0x3fff8000
-BOARD_DTB_SIZE := 335872
-BOARD_DTB_OFFSET := 0x07c88000
+BOARD_PAGE_SIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
-BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_TAGS_OFFSET := 0x07c88000
-BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_BOOT_HEADER_VERSION := 4
+BOARD_HEADER_SIZE := 2128
+BOARD_DTB_SIZE := 335003
+BOARD_DTB_OFFSET := 0x07c88000
+
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(BOARD_VENDOR_CMDLINE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_PAGE_SIZE) --board ""
@@ -68,26 +95,26 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-BOARD_RAMDISK_USE_LZ4 := true
-TARGET_KERNEL_APPEND_DTB := false
+
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG := false
+BOARD_RAMDISK_USE_LZ4 := true
+TARGET_NO_KERNEL := true
 
-TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/kernel
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb
-TARGET_KERNEL_SOURCE := kernel/xiaomi/matisse
-TARGET_KERNEL_CONFIG := mikrn_matisse_stability_defconfig
+# Verified Boot
+BOARD_AVB_ENABLE := true
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
-# Metadata
-BOARD_USES_METADATA_PARTITION := true
+BOARD_AVB_VBMETA_SYSTEM := product system system_ext
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_DTBOIMG_PARTITION_SIZE := 33554432
-BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
@@ -95,13 +122,9 @@ BOARD_PREBUILT_ODMIMAGE := $(DEVICE_PATH)/prebuilts/odm.img
 BOARD_PREBUILT_VENDORIMAGE := $(DEVICE_PATH)/prebuilts/vendor.img
 
 BOARD_SUPER_PARTITION_SIZE := 9126805504
-BOARD_SUPER_PARTITION_GROUPS := xiaomi_dynamic_partitions
-BOARD_XIAOMI_DYNAMIC_PARTITIONS_SIZE := 9648996352
-BOARD_XIAOMI_DYNAMIC_PARTITIONS_PARTITION_LIST := system product vendor odm system_ext
-
-BOARD_PARTITION_LIST := $(call to-upper, $(BOARD_MAIN_PARTITION_LIST))
-$(foreach p, $(BOARD_PARTITION_LIST), $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := erofs))
-$(foreach p, $(BOARD_PARTITION_LIST), $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
+BOARD_SUPER_PARTITION_GROUPS := main
+BOARD_MAIN_SIZE := 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB
+BOARD_MAIN_PARTITION_LIST := system system_ext product vendor vendor_dlkm odm
 
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
@@ -116,13 +139,25 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-BOARD_USES_VENDOR_DLKMIMAGE := true
 
-# Platform
-TARGET_BOARD_PLATFORM := mt6983
+# Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# System as root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+
+# Screen density
+TARGET_SCREEN_DENSITY := 560
+
+# Resolution
+TARGET_SCREEN_HEIGHT := 3200
+TARGET_SCREEN_WIDTH := 1440
+
+# Treble
+BOARD_VNDK_VERSION := current
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.mt6983
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/first_stage_ramdisk/fstab.mt6983
 TARGET_NO_RECOVERY := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -134,36 +169,11 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 
 # Vendor boot
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6983:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6983
+    $(DEVICE_PATH)/recovery/root/first_stage_ramdisk/fstab.mt6983:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6983
 
 # Vednor kernel modules
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(wildcard $(DEVICE_PATH)/prebuilts/modules/ramdisk/*.ko)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/prebuilts/modules/ramdisk/modules.load))
 
-# Sepolicy
-include device/mediatek/sepolicy_vndr/SEPolicy.mk
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
-SELINUX_IGNORE_NEVERALLOWS := true
-
-# Verified Boot
-BOARD_AVB_ENABLE := true
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
-
-BOARD_AVB_VBMETA_SYSTEM := product system system_ext
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
-
 # VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/compatibility_matrix.device.xml
-
-# VNDK
-BOARD_VNDK_VERSION := current
-
-# Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/props/system.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/props/product.prop
-TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/props/system_ext.prop

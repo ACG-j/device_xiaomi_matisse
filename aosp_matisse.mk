@@ -1,10 +1,18 @@
 #
-# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
-# SPDX-License-Identifier: Apache-2.0
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-
-DEVICE_PATH := device/xiaomi/matisse
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
 # Configure core_64_bit.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -25,30 +33,19 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Inherit common LineageOS configurations
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit device configurations
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
-## Device identifier
+
+## Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := matisse
 PRODUCT_NAME := aosp_matisse
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := Redmi K50 Pro
-PRODUCT_MANUFACTURER := xiaomi
-
-PRODUCT_CHARACTERISTICS := nosdcard
+PRODUCT_MODEL := 22011211C
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_RELEASE_NAME := Redmi K50 Pro
 
 # GMS
-PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 3200
-TARGET_SCREEN_WIDTH := 1440
-TARGET_BOOT_ANIMATION_RES := 1440
-
-TARGET_SCREEN_DENSITY := 560
-
-TARGET_SUPPORTS_QUICK_TAP := true
-
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi

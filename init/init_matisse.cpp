@@ -1,102 +1,53 @@
-/*
-   Copyright (c) 2015, The Linux Foundation. All rights reserved.
-   Copyright (C) 2016 The CyanogenMod Project.
-   Copyright (C) 2019 The LineageOS Project.
-   Redistribution and use in source and binary forms, with or without
-   modification, are permitted provided that the following conditions are
-   met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of The Linux Foundation nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-   THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
-   WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
-   ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
-   BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-   BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-   OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-   IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
+#include <stdio.h>
 #include <stdlib.h>
-#include <fstream>
-#include <string.h>
-#include <sys/sysinfo.h>
+#include <fcntl.h>
 #include <unistd.h>
+#include <android-base/properties.h>
+#include <android-base/logging.h>
+#include <sys/resource.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include <android-base/properties.h>
-#include "property_service.h"
-#include "vendor_init.h"
-
-using android::base::GetProperty;
-using android::base::SetProperty;
-using std::string;
-
-char const *heapstartsize;
-char const *heapgrowthlimit;
-char const *heapsize;
-char const *heapminfree;
-char const *heapmaxfree;
-char const *heaptargetutilization;
-
-void property_override(string prop, string value)
+void property_override(const std::string& name, const std::string& value)
 {
-  auto pi = (prop_info *)__system_property_find(prop.c_str());
+    size_t valuelen = value.size();
 
-  if (pi != nullptr)
-    __system_property_update(pi, value.c_str(), value.size());
-  else
-    __system_property_add(prop.c_str(), prop.size(), value.c_str(), value.size());
-}
-void load_dalvik_properties()
-{
-  // 8GB & 12GB RAM
-  property_override("dalvik.vm.heapstartsize", "32m");
-  property_override("dalvik.vm.heapgrowthlimit", "512m");
-  property_override("dalvik.vm.heapsize", "768m");
-  property_override("dalvik.vm.heapmaxfree", "64m");
-  property_override("dalvik.vm.heaptargetutilization", "0.5");
-  property_override("dalvik.vm.heapminfree", "8m");
+    prop_info* pi = (prop_info*) __system_property_find(name.c_str());
+    if (pi != nullptr) {
+        __system_property_update(pi, value.c_str(), valuelen);
+    }
+    else {
+        int rc = __system_property_add(name.c_str(), name.size(), value.c_str(), valuelen);
+        if (rc < 0) {
+            LOG(ERROR) << "property_set(\"" << name << "\", \"" << value << "\") failed: "
+                       << "__system_property_add failed";
+        }
+    }
 }
 
-void load_miuicamera_properties()
+void model_property_override(const std::string& device, const std::string& model)
 {
-  // Miui Camera
-  property_override("ro.miui.notch", "1");
-  property_override("camera.lab.options", "true");
-  property_override("ro.product.mod_device", "matisse_global");
-  property_override("vendor.camera.aux.packagelist", "com.android.camera");
-  property_override("persist.vendor.camera.privapp.list", "com.android.camera");
-  property_override("ro.com.google.lens.oem_camera_package", "com.android.camera");
+    property_override("ro.product.device", device);
+    property_override("ro.product.odm.device", device);
+    property_override("ro.product.system.device", device);
+    property_override("ro.product.vendor.device", device);
+    property_override("ro.build.product", device);
+    property_override("ro.product.name", device);
+    property_override("ro.product.odm.name", device);
+    property_override("ro.product.product.device", device);
+    property_override("ro.product.product.name", device);
+    property_override("ro.product.system.name", device);
+    property_override("ro.product.system_ext.device", device);
+    property_override("ro.product.system_ext.name", device);
+    property_override("ro.product.vendor.name", device);
+    property_override("ro.product.model", model);
+    property_override("ro.product.odm.model", model);
+    property_override("ro.product.system.model", model);
+    property_override("ro.product.vendor.model", model);
+    property_override("ro.product.product.model", model);
+    property_override("ro.product.system_ext.model", model);
 }
 
-void vendor_load_properties()
-{
-
-  load_dalvik_properties();
-  load_miuicamera_properties();
-
-  // Override all partitions' props
-  string prop_partitions[] = {"", "vendor.", "odm."};
-  for (const string &prop : prop_partitions)
-  {
-    property_override(string("ro.product.") + prop + string("brand"), "Redmi");
-    property_override(string("ro.product.") + prop + string("name"), "matisse");
-    property_override(string("ro.product.") + prop + string("device"), "matisse");
-    property_override(string("ro.product.") + prop + string("model"), "22011211C");
-    property_override(string("ro.product.") + prop + string("marketname"), "Redmi K50 Pro");
-  }
-
-  property_override("ro.oem_unlock_supported", "0");
+void vendor_load_properties() {
+    model_property_override("matisse", "Redmi K50 Pro");
 }
