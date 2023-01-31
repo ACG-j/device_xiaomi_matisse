@@ -1,4 +1,3 @@
-import /microtrust.rc
 
 on init
     setprop sys.usb.configfs 1

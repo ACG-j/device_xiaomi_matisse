@@ -110,3 +110,10 @@ PRODUCT_SOONG_NAMESPACES += \
 # Dtb
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilts/dtb:dtb.img
+
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.recovery.mt6983.rc \
+    init.recovery.usb.rc \
+    set_permissive.sh \
+    init.mt6983.rc 
