@@ -102,7 +102,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
 
 # Properties
-include $(LOCAL_PATH)/properties/default.mk
+# include $(LOCAL_PATH)/properties/default.mk
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
