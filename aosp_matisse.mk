@@ -32,8 +32,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # Configure developer_gsi_keys.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
-# Inherit common LineageOS configurations
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit common PEOS configurations
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 # Inherit device configurations
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
