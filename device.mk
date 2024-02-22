@@ -57,16 +57,14 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Product characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
-# Rootdir
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    init.mt6983.rc \
-    fstab.enableswap
+    init.mt6983.rc 
 
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.enableswap:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.enableswap
+    $(DEVICE_PATH)/rootdir/etc/fstab.mt6983:recovery/root/first_stage_ramdisk/fstab.mt6983
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
