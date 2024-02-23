@@ -277,5 +277,3 @@ prebuilt_etc {
     vendor: true,
 }
 
-
-// init_first_stage
