@@ -60,7 +60,8 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    init.mt6983.rc 
+    init.mt6983.rc \
+    fstab.mt6983
 
 
 PRODUCT_COPY_FILES += \
