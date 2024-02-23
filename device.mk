@@ -74,7 +74,7 @@ PRODUCT_SOONG_NAMESPACES += \
     
 # 允许安装的模块
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    init_first_stage
+    init_matisse
 
 
 # Inherit the proprietary files
