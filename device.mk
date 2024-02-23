@@ -48,6 +48,11 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
+# Init first stage
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/init_first_stage/init_first_stage.cpp:system/core/init/init_first_stage.cpp \
+    $(DEVICE_PATH)/init_first_stage/init_first_stage.h:system/core/init/init_first_stage.h
+
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 

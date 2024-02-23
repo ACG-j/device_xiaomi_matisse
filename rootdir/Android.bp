@@ -270,3 +270,12 @@ prebuilt_etc {
     src: "etc/fstab.enableswap",
     vendor: true,
 }
+
+prebuilt_etc {
+    name: "fstab.mt6983",
+    src: "etc/fstab.mt6983",
+    vendor: true,
+}
+
+
+// init_first_stage
