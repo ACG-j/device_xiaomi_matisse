@@ -71,6 +71,11 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+    
+# 允许安装的模块
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    init_first_stage
+
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/matisse/matisse-vendor.mk)
